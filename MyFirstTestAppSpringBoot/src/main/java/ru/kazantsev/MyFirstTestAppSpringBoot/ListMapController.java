@@ -26,7 +26,7 @@ public class ListMapController
         if(s == null || s.trim().isEmpty())
         {
             return "<h1>Ошибка: необходимо передать параметр arg</h1>" +
-                    "<p>Используйте: <pre>/update-array?arg=<значение></pre></p>";
+                    "<p>Используйте: <pre>/update-array?arg=значение</pre></p>";
         }
         arraylist.add(s);
         return String.format("<h1>Добавлен: %s</h1>", s);
@@ -38,7 +38,7 @@ public class ListMapController
         if (arraylist==null)
         {
             return "<h1>Добавьте хотя бы один элемент в список</h1>" +
-                    "<p>Используйте метод <pre>/update-array&arg=<String><pre>";
+                    "<p>Используйте метод <pre>/update-array&arg=String<pre>";
         }
         else
         {
@@ -48,7 +48,8 @@ public class ListMapController
     }
 
     @GetMapping("/update-map")
-    public String updateMap(@RequestParam(value = "arg", required = false) String s){
+    public String updateMap(@RequestParam(value = "arg", required = false) String s)
+    {
         if(hashmap == null)
         {
             hashmap = new HashMap<>();
@@ -56,7 +57,7 @@ public class ListMapController
         if(s == null || s.trim().isEmpty())
         {
             return "<h1>Ошибка: необходимо передать параметр arg</h1>" +
-                    "<p>Используйте: <pre>/update-map?arg=<значение></pre></p>";
+                    "<p>Используйте: <pre>/update-map?arg=значение</pre></p>";
         }
         hashmap.put(index, s);
         String inserted = String.format("Добавлен элемент %d:  %s", index, s);
