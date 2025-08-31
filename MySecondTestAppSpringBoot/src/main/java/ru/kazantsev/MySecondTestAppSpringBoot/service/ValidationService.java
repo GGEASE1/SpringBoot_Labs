@@ -10,5 +10,6 @@ import ru.kazantsev.MySecondTestAppSpringBoot.exception.ValidationFailedExceptio
 public interface ValidationService
 {
     void isValid(BindingResult bindingResult) throws ValidationFailedException;
+
     void isUnsupported(String uid) throws UnsupportedCodeException;
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
-import ru.kazantsev.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
-import ru.kazantsev.MySecondTestAppSpringBoot.exception.ValidationFailedException;
 import ru.kazantsev.MySecondTestAppSpringBoot.model.Request;
 import ru.kazantsev.MySecondTestAppSpringBoot.model.Response;
 import ru.kazantsev.MySecondTestAppSpringBoot.service.ValidationService;
+import ru.kazantsev.MySecondTestAppSpringBoot.exception.UnsupportedCodeException;
+import ru.kazantsev.MySecondTestAppSpringBoot.exception.ValidationFailedException;
 
 @RestController
 public class MyController
@@ -40,7 +40,7 @@ public class MyController
     public ResponseEntity<Response> feedback(
             @Valid @RequestBody Request request,
             BindingResult bindingResult
-            )
+    )
     {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
 
@@ -52,7 +52,6 @@ public class MyController
                 .errorCode("")
                 .errorMessage("")
                 .build();
-
         try
         {
             validationService.isUnsupported(request.getUid());
@@ -89,7 +88,6 @@ public class MyController
 
     private String getErrorMessage(BindingResult bindingResult)
     {
-
         List<ObjectError> errors = bindingResult.getAllErrors();
 
         List<String> errorMessages = errors.stream()
