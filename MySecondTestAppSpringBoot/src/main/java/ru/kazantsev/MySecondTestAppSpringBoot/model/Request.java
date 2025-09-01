@@ -28,7 +28,7 @@ public class Request
     private String source;
 
     @NotNull
-    @Min(value = 1, message = "comuncationId минимальное значение: 1")
+    @Min(value = 1, message = "comuncation Id минимальное значение: 1")
     @Max(value = 100000, message = "communicationId не может быть более: 100 000")
     private int communicationId;
 
