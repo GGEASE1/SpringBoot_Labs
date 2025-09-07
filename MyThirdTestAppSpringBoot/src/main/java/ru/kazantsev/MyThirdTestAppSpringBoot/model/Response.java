@@ -10,7 +10,20 @@ public class Response
     private String uid;
     private String operationUid;
     private String systemTime;
-    private String code;
-    private String errorCode;
-    private String errorMessage;
+    private Codes code;
+    private ErrorCodes errorCode;
+    private ErrorMessages errorMessage;
+
+    @Override
+    public String toString()
+    {
+        return String.format("Response{uid=%s, operationUid=%s, systemTime=%s, code=%s, errorCode=%s, errorMessage=%s}",
+                uid,
+                operationUid,
+                systemTime,
+                code.getName(),
+                errorCode.getName(),
+                errorMessage.getName()
+        );
+    }
 }

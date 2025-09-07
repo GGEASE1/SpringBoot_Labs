@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public enum Systems {
+public enum Systems
+{
     ERP("Enterprise Resousrce Planning"),
     CRM("Customer Relashionship Managment"),
     WMS("Warehouse Managment System");

@@ -1,5 +1,6 @@
 package ru.kazantsev.MyThirdTestAppSpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Codes
@@ -24,3 +25,4 @@ public enum Codes
         return name;
     }
 }
+
