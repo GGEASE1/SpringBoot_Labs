@@ -3,16 +3,26 @@ package ru.kazantsev.MyThirdTestAppSpringBoot.service;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import lombok.extern.slf4j.Slf4j;
+
 import ru.kazantsev.MyThirdTestAppSpringBoot.exception.UnsupportedCodeException;
 import ru.kazantsev.MyThirdTestAppSpringBoot.exception.ValidationFailedException;
 
+@Slf4j
 @Service
 public class RequestValidationService implements ValidationService
 {
+    @SuppressWarnings("null")
     public void isValid(BindingResult bindingResult) throws ValidationFailedException
     {
         if(bindingResult.hasErrors())
         {
+            log.error("Запрос не валиден!");
+            log.error("Ошибки валидации: errors: {}",
+                    bindingResult.getAllErrors()
+                            .stream()
+                            .map(error -> error.getDefaultMessage())
+                            .collect(java.util.stream.Collectors.joining("; ")));
             throw new ValidationFailedException(bindingResult.getFieldError().toString());
         }
     }
@@ -21,7 +31,8 @@ public class RequestValidationService implements ValidationService
     {
         if(uid.equals("123"))
         {
-            throw new UnsupportedCodeException("Не допустимое значение uid!");
+            log.error("Не поддерживаемое значение Uid: {}", uid);
+            throw new UnsupportedCodeException("Не допустимое значение uid!: " + uid);
         }
     }
 }

@@ -1,39 +1,43 @@
 package ru.kazantsev.MyThirdTestAppSpringBoot.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.kazantsev.MyThirdTestAppSpringBoot.model.Request;
-import ru.kazantsev.MyThirdTestAppSpringBoot.model.Response;
-import ru.kazantsev.MyThirdTestAppSpringBoot.service.ValidationService;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import ru.kazantsev.MyThirdTestAppSpringBoot.exception.UnsupportedCodeException;
 import ru.kazantsev.MyThirdTestAppSpringBoot.exception.ValidationFailedException;
+import ru.kazantsev.MyThirdTestAppSpringBoot.model.Codes;
+import ru.kazantsev.MyThirdTestAppSpringBoot.model.ErrorCodes;
+import ru.kazantsev.MyThirdTestAppSpringBoot.model.ErrorMessages;
+import ru.kazantsev.MyThirdTestAppSpringBoot.model.Request;
+import ru.kazantsev.MyThirdTestAppSpringBoot.model.Response;
+import ru.kazantsev.MyThirdTestAppSpringBoot.service.ModifyResponseService;
+import ru.kazantsev.MyThirdTestAppSpringBoot.service.ValidationService;
+import ru.kazantsev.MyThirdTestAppSpringBoot.util.DateTimeUtil;
 
+@Slf4j
 @RestController
 public class MyController
 {
     private final ValidationService validationService;
-
-    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+    private final ModifyResponseService modifyResponseService;
 
     @Autowired
-    public MyController(ValidationService validationService)
+    public MyController(ValidationService validationService,
+                        @Qualifier("ModifySystemTimeResponseService")
+                        ModifyResponseService modifyResponseService)
     {
         this.validationService = validationService;
+        this.modifyResponseService = modifyResponseService;
     }
 
     @PostMapping(value="/feedback")
@@ -42,58 +46,57 @@ public class MyController
             BindingResult bindingResult
     )
     {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
+        log.info("request: {}", request);
+        log.info("Создается объект Response");
 
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
-                .systemTime(simpleDateFormat.format(new Date()))
-                .code("Success")
-                .errorCode("")
-                .errorMessage("")
+                .systemTime(DateTimeUtil.getCustomFormat().format(new Date()))
+                .code(Codes.SUCCESS)
+                .errorCode(ErrorCodes.EMPTY)
+                .errorMessage(ErrorMessages.EMPTY)
                 .build();
+
+        log.info("response:{}", response);
+
         try
         {
+            log.info("Проверка Uid");
             validationService.isUnsupported(request.getUid());
+            log.info("Валидация запроса");
             validationService.isValid(bindingResult);
         }
         catch(ValidationFailedException e)
         {
-
-            String messageError = getErrorMessage(bindingResult);
-            logger.info("ERORRS: " + messageError);
-
-            response.setCode("failed");
-            response.setErrorCode("ValidationException");
-            response.setErrorMessage(messageError);
+            response.setCode(Codes.FAILED);
+            response.setErrorCode(ErrorCodes.VALIDATION_EXCEPTION);
+            response.setErrorMessage(ErrorMessages.VALIDATION);
+            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (UnsupportedCodeException e)
         {
-            response.setCode("failed");
-            response.setErrorCode("UnsupportedCodeException");
-            response.setErrorMessage(e.getMessage());
+            response.setCode(Codes.FAILED);
+            response.setErrorCode(ErrorCodes.UNSUPPORTED_EXCEPTION);
+            response.setErrorMessage(ErrorMessages.UNSUPPORTED);
+            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e)
         {
-            response.setCode("failed");
-            response.setErrorCode("UnknowException");
-            response.setErrorMessage("Произошла непрдвиденная ошибка");
+            response.setCode(Codes.FAILED);
+            response.setErrorCode(ErrorCodes.UNKNOWN_EXCEPTION);
+            response.setErrorMessage(ErrorMessages.UNKNOWN);
+            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        logger.info("Request is OK!!!");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
-    private String getErrorMessage(BindingResult bindingResult)
-    {
-        List<ObjectError> errors = bindingResult.getAllErrors();
+        log.info("Объект Request валидный, передается в ModifyResponseService");
+            log.info("До модификации response: {}", response);
+            modifyResponseService.modify(response);
+            log.info("После модификации response: {}", response);
 
-        List<String> errorMessages = errors.stream()
-                .map(ObjectError::getDefaultMessage)
-                .collect(Collectors.toList());
-
-        return String.join("; ", errorMessages);
+            return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
