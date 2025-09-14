@@ -20,7 +20,6 @@ import ru.kazantsev.MyThirdTestAppSpringBoot.model.ErrorCodes;
 import ru.kazantsev.MyThirdTestAppSpringBoot.model.ErrorMessages;
 import ru.kazantsev.MyThirdTestAppSpringBoot.model.Request;
 import ru.kazantsev.MyThirdTestAppSpringBoot.model.Response;
-import ru.kazantsev.MyThirdTestAppSpringBoot.service.ModifyRequestService;
 import ru.kazantsev.MyThirdTestAppSpringBoot.service.ModifyResponseService;
 import ru.kazantsev.MyThirdTestAppSpringBoot.service.ValidationService;
 import ru.kazantsev.MyThirdTestAppSpringBoot.util.DateTimeUtil;
@@ -31,17 +30,14 @@ public class MyController
 {
     private final ValidationService validationService;
     private final ModifyResponseService modifyResponseService;
-    private final ModifyRequestService modifyRequestService;
 
     @Autowired
     public MyController(ValidationService validationService,
                         @Qualifier("ModifySystemTimeResponseService")
-                        ModifyResponseService modifyResponseService,
-                        ModifyRequestService modifyRequestService)
+                        ModifyResponseService modifyResponseService)
     {
         this.validationService = validationService;
         this.modifyResponseService = modifyResponseService;
-        this.modifyRequestService = modifyRequestService;
     }
 
     @PostMapping(value="/feedback")
@@ -100,7 +96,7 @@ public class MyController
             log.info("До модификации response: {}", response);
             modifyResponseService.modify(response);
             log.info("После модификации response: {}", response);
-            modifyRequestService.modify(request);
+
             return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
