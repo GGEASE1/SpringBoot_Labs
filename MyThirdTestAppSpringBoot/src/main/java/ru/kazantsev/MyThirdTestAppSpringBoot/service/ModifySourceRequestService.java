@@ -9,12 +9,12 @@ import ru.kazantsev.MyThirdTestAppSpringBoot.model.Request;
 
 
 @Service
-public class ModifySystemNameRequestService implements ModifyRequestService
+public class ModifySourceRequestService implements ModifyRequestService
 {
     @Override
     public void modify(Request request)
     {
-
+        request.setSource("13062004");
         HttpEntity<Request> httpEntity = new HttpEntity<>(request);
 
         new RestTemplate().exchange("http://localhost:8084/feedback",

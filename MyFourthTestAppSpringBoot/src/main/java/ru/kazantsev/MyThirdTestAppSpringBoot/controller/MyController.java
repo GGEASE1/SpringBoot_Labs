@@ -83,9 +83,7 @@ public class MyController
             response.setErrorMessage(ErrorMessages.UNKNOWN);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
             modifyResponseService.modify(response);
-
             return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
