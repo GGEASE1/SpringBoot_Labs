@@ -17,7 +17,6 @@ public class ModifySystemTimeResponseService implements ModifyResponseService
     @Override
     public Response modify(Response response)
     {
-        log.info("Изменяется поле systemTime объекта response");
         response.setSystemTime(DateTimeUtil.getCustomFormat().format(new Date()));
         return response;
     }

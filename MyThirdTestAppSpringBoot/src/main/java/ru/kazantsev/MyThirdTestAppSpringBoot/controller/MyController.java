@@ -50,6 +50,8 @@ public class MyController
             BindingResult bindingResult
     )
     {
+        request.setService1Time(System.currentTimeMillis());
+
         log.info("request: {}", request);
 
         Response response = Response.builder()

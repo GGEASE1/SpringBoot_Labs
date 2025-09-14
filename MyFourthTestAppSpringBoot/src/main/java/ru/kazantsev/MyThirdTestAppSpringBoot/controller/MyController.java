@@ -46,7 +46,19 @@ public class MyController
             BindingResult bindingResult
     )
     {
+        long service2ReceiveTime = System.currentTimeMillis();
+
         log.info("request: {}", request);
+
+        if (request.getService1Time() != null)
+        {
+            long service1ToService2Time = service2ReceiveTime - request.getService1Time();
+            log.info("Время (Сервис 1 -> Сервис 2): {} мс", service1ToService2Time);
+        }
+        else
+        {
+            log.warn("Отсутствует временная метка Сервиса 1 для измерения времени");
+        }
 
         Response response = Response.builder()
                 .uid(request.getUid())

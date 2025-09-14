@@ -37,6 +37,8 @@ public class Request
     private int productCode;
     private int smsCode;
 
+    private Long service1Time;
+
     @Override
     public String toString()
     {
