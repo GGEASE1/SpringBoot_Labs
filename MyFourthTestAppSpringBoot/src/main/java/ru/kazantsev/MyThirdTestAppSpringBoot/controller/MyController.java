@@ -53,7 +53,7 @@ public class MyController
         if (request.getService1Time() != null)
         {
             long service1ToService2Time = service2ReceiveTime - request.getService1Time();
-            log.info("Время (Сервис 1 -> Сервис 2): {} мс", service1ToService2Time);
+            log.info("Время (Postman -> Сервис 1 -> Сервис 2): {} мс", service1ToService2Time);
         }
         else
         {
