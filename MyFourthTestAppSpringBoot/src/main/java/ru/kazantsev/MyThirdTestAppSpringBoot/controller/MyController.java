@@ -47,7 +47,6 @@ public class MyController
     )
     {
         log.info("request: {}", request);
-        log.info("Создается объект Response");
 
         Response response = Response.builder()
                 .uid(request.getUid())
@@ -58,13 +57,9 @@ public class MyController
                 .errorMessage(ErrorMessages.EMPTY)
                 .build();
 
-        log.info("response:{}", response);
-
         try
         {
-            log.info("Проверка Uid");
             validationService.isUnsupported(request.getUid());
-            log.info("Валидация запроса");
             validationService.isValid(bindingResult);
         }
         catch(ValidationFailedException e)
@@ -72,7 +67,6 @@ public class MyController
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.VALIDATION_EXCEPTION);
             response.setErrorMessage(ErrorMessages.VALIDATION);
-            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (UnsupportedCodeException e)
@@ -80,7 +74,6 @@ public class MyController
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNSUPPORTED_EXCEPTION);
             response.setErrorMessage(ErrorMessages.UNSUPPORTED);
-            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e)
@@ -88,14 +81,10 @@ public class MyController
             response.setCode(Codes.FAILED);
             response.setErrorCode(ErrorCodes.UNKNOWN_EXCEPTION);
             response.setErrorMessage(ErrorMessages.UNKNOWN);
-            log.info("response: {}", response);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        log.info("Объект Request валидный, передается в ModifyResponseService");
-            log.info("До модификации response: {}", response);
             modifyResponseService.modify(response);
-            log.info("После модификации response: {}", response);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
     }
