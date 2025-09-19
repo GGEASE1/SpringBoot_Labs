@@ -28,9 +28,21 @@ public class Request
 
     private String source;
 
+    @NotNull(message = "Position обязательна для заполнения")
     private Positions position;
+
+    @Positive(message = "Salary должен быть положительным числом")
+    @NotNull(message = "Salary обязателен для заполнения")
     private double salary;
+
+    @Positive(message = "Bonus должен быть положительным числом")
+    @NotNull(message = "Bonus обязателен для заполнения")
     private double bonus;
+
+    @Positive(message = "WorkDays должно быть положительным числом")
+    @Min(value = 1, message = "WorkDays не может быть меньше 1")
+    @Max(value = 366, message = "WorkDays не может быть больше 366")
+    @NotNull(message = "WorkDays обязателен для заполнения")
     private int workDays;
 
     @NotNull
