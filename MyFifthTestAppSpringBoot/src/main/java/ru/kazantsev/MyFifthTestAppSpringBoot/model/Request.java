@@ -28,6 +28,11 @@ public class Request
 
     private String source;
 
+    private Positions position;
+    private double salary;
+    private double bonus;
+    private int workDays;
+
     @NotNull
     @Min(value = 1, message = "comuncationId минимальное значение: 1")
     @Max(value = 100000, message = "communicationId не может быть более: 100 000")
@@ -51,6 +56,10 @@ public class Request
                 ", communicationId=" + communicationId + " " +
                 ", templateId=" + templateId + " " +
                 ", producCode=" + productCode + " " +
-                ", smsCode=" + smsCode + " }";
+                ", smsCode=" + smsCode +
+                ", position=" + position +
+                ", salary=" + salary + " " +
+                ", bonus=" + bonus + " " +
+                ", workDays=" + workDays + "}";
     }
 }

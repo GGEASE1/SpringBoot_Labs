@@ -11,19 +11,8 @@ public class Response
     private String operationUid;
     private String systemTime;
     private Codes code;
+    private Double annualBonus;
     private ErrorCodes errorCode;
     private ErrorMessages errorMessage;
 
-    @Override
-    public String toString()
-    {
-        return String.format("Response{uid=%s, operationUid=%s, systemTime=%s, code=%s, errorCode=%s, errorMessage=%s}",
-                uid,
-                operationUid,
-                systemTime,
-                code.getName(),
-                errorCode.getName(),
-                errorMessage.getName()
-        );
-    }
 }
