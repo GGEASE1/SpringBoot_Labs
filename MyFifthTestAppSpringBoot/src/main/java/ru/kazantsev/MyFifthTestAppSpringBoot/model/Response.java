@@ -12,6 +12,7 @@ public class Response
     private String systemTime;
     private Codes code;
     private Double annualBonus;
+    private Double quarterlyBonus;
     private ErrorCodes errorCode;
     private ErrorMessages errorMessage;
 

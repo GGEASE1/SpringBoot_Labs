@@ -7,7 +7,8 @@ public enum ErrorMessages
     EMPTY(""),
     VALIDATION("Ошибка валидации"),
     UNSUPPORTED("Не предвиденная ошибка"),
-    UNKNOWN("Не поддерживаемая ошибка");
+    UNKNOWN("Не поддерживаемая ошибка"),
+    CALCULATION("Ошибка расчета");
 
     private final String description;
 

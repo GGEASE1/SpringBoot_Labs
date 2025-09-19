@@ -7,7 +7,8 @@ public enum ErrorCodes
     EMPTY(""),
     VALIDATION_EXCEPTION("ValidationException"),
     UNKNOWN_EXCEPTION("UnknownException"),
-    UNSUPPORTED_EXCEPTION("UnsopportedException");
+    UNSUPPORTED_EXCEPTION("UnsopportedException"),
+    CALCULATION_ERROR("CALCULATION_ERROR");
 
     private final String name;
 
