@@ -98,6 +98,9 @@ public class MyController
     public ResponseEntity<Response> calculate
             (@Valid @RequestBody Request request)
     {
+
+        log.info("request: {}", request);
+
         Response response = Response.builder()
                 .uid(request.getUid())
                 .operationUid(request.getOperationUid())
@@ -116,7 +119,6 @@ public class MyController
             response.setQuarterlyBonus(quarterlyBonus);
 
             response.setCode(Codes.SUCCESS);
-
             return new ResponseEntity<>(response, HttpStatus.OK);
 
         }

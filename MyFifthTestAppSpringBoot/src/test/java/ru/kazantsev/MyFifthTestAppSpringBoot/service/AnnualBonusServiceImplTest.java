@@ -33,7 +33,8 @@ class AnnualBonusServiceImplTest
     }
 
     @Test
-    void calculateQuarterlyBonusForManager() {
+    void calculateQuarterlyBonusForManager()
+    {
         // Arrange: Запрос для менеджера (TL)
         Request request = new Request();
         request.setSalary(100000.0);
