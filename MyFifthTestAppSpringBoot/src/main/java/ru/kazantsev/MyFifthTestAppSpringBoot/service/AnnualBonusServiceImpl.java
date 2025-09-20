@@ -2,7 +2,6 @@ package ru.kazantsev.MyFifthTestAppSpringBoot.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.kazantsev.MyFifthTestAppSpringBoot.model.Positions;
 import ru.kazantsev.MyFifthTestAppSpringBoot.model.Request;
 
 import java.time.Year;
