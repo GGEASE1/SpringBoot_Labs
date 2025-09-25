@@ -1,7 +1,6 @@
 package ru.kazantsev.MySixthSpringBoot2Dbase.service;
 
 import ru.kazantsev.MySixthSpringBoot2Dbase.entity.EducationalDesciplines;
-import ru.kazantsev.MySixthSpringBoot2Dbase.entity.Student;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
