@@ -22,7 +22,7 @@ public class StudentDAOImpl implements StudentDAO
     {
         Query query = entityManager.createQuery("from Student");
         List<Student> allStudents = query.getResultList();
-        log.info("All students in database " + allStudents);
+        log.info("Все студенты: " + allStudents);
         return allStudents;
     }
 

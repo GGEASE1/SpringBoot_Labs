@@ -21,7 +21,7 @@ public class EducationalDesciplinesDAOImpl implements EducationalDesciplinesDAO
     {
         Query query = entityManager.createQuery("from EducationalDesciplines");
         List<EducationalDesciplines> educationalDesciplines = query.getResultList();
-        log.info("all EducationalDesciplines" +educationalDesciplines);
+        log.info("Все предметы:" +educationalDesciplines);
         return educationalDesciplines;
     }
 

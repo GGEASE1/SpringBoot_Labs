@@ -23,6 +23,7 @@ public class EductaionalDesciplinesServiceImpl implements EducationalDesciplines
     @Transactional
     public List<EducationalDesciplines> getAllEducationalDesciplines()
     {
+        log.info("Вывод успешен");
         return educationalDesciplinesDAO.getAllEducationalDesciplines();
     }
 
@@ -33,8 +34,10 @@ public class EductaionalDesciplinesServiceImpl implements EducationalDesciplines
         EducationalDesciplines educationalDesciplines = educationalDesciplinesDAO.getEducationalDesciplineById(id);
         if (educationalDesciplines == null)
         {
+            log.info("Информация не получена");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        log.info("Информация получена");
         return new ResponseEntity<>(educationalDesciplines,HttpStatus.OK);
     }
 
@@ -45,8 +48,10 @@ public class EductaionalDesciplinesServiceImpl implements EducationalDesciplines
         EducationalDesciplines savedEducationalEdsciplines = educationalDesciplinesDAO.saveEducationalDesciplines(educationalDesciplines);
         if (savedEducationalEdsciplines == null)
         {
+            log.info("Сохранение неудачно");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        log.info("Сохранение успешно");
         return new ResponseEntity<>(savedEducationalEdsciplines,HttpStatus.CREATED);
     }
 
@@ -57,8 +62,10 @@ public class EductaionalDesciplinesServiceImpl implements EducationalDesciplines
         EducationalDesciplines deletedEducationalDesciplines = educationalDesciplinesDAO.getEducationalDesciplineById(id);
         if (deletedEducationalDesciplines == null)
         {
+            log.info("Удаление неудачно");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        log.info("Удаление успешно");
         educationalDesciplinesDAO.deleteEducationalDesciplines(id);
         return new ResponseEntity<>(deletedEducationalDesciplines,HttpStatus.OK);
     }

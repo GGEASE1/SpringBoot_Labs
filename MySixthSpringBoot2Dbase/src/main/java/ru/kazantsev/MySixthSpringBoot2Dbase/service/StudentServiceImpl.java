@@ -1,5 +1,6 @@
 package ru.kazantsev.MySixthSpringBoot2Dbase.service;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.kazantsev.MySixthSpringBoot2Dbase.dao.StudentDAO;
 import ru.kazantsev.MySixthSpringBoot2Dbase.entity.Student;
 import jakarta.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class StudentServiceImpl implements StudentService
 {
@@ -21,6 +23,7 @@ public class StudentServiceImpl implements StudentService
     @Transactional
     public List<Student> getAllStudents()
     {
+        log.info("Вывод успешен");
         return studentDAO.getAllStudents();
     }
 
@@ -31,8 +34,10 @@ public class StudentServiceImpl implements StudentService
         Student savedStudent = studentDAO.saveStudent(student);
         if(savedStudent == null)
         {
+            log.info("Сохранение неудачно");
             return new ResponseEntity<>(student, HttpStatus.BAD_REQUEST);
         }
+        log.info("Сохранение успешно");
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
 
@@ -44,8 +49,10 @@ public class StudentServiceImpl implements StudentService
         Student student = studentDAO.getStudent(id);
         if(student == null)
         {
+            log.info("Информация не получена");
             return new ResponseEntity<>(student, HttpStatus.NOT_FOUND);
         }
+        log.info("Информация получена");
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
@@ -57,9 +64,11 @@ public class StudentServiceImpl implements StudentService
         Student student = studentDAO.getStudent(id);
         if(student == null)
         {
+            log.info("Удаление неудачно");
             return new ResponseEntity<>(student, HttpStatus.NOT_FOUND);
         }
         studentDAO.deleteStudent(id);
+        log.info("Удаление успешно");
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 }
