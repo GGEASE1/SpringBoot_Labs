@@ -1,4 +1,4 @@
-package ru.kazantsev.myeighthuirestdbservice.dto;
+package ru.kazantsev.MyEighthUiRestDbService.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

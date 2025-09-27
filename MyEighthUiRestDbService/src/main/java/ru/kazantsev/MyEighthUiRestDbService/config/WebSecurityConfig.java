@@ -1,4 +1,4 @@
-package ru.kazantsev.myeighthuirestdbservice.config;
+package ru.kazantsev.MyEighthUiRestDbService.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

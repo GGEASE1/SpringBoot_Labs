@@ -1,8 +1,8 @@
-package ru.kazantsev.myeighthuirestdbservice.controller;
+package ru.kazantsev.MyEighthUiRestDbService.controller;
 
-import ru.kazantsev.myeighthuirestdbservice.dto.UserDto;
-import ru.kazantsev.myeighthuirestdbservice.entity.User;
-import ru.kazantsev.myeighthuirestdbservice.service.UserService;
+import ru.kazantsev.MyEighthUiRestDbService.dto.UserDto;
+import ru.kazantsev.MyEighthUiRestDbService.entity.User;
+import ru.kazantsev.MyEighthUiRestDbService.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

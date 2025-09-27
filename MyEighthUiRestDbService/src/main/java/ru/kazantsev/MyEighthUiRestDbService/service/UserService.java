@@ -1,7 +1,7 @@
-package ru.kazantsev.myeighthuirestdbservice.service;
+package ru.kazantsev.MyEighthUiRestDbService.service;
 
-import ru.kazantsev.myeighthuirestdbservice.dto.UserDto;
-import ru.kazantsev.myeighthuirestdbservice.entity.User;
+import ru.kazantsev.MyEighthUiRestDbService.dto.UserDto;
+import ru.kazantsev.MyEighthUiRestDbService.entity.User;
 
 import java.util.List;
 

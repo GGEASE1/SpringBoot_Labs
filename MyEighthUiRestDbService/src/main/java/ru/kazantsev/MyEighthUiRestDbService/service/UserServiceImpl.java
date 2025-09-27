@@ -1,10 +1,10 @@
-package ru.kazantsev.myeighthuirestdbservice.service;
+package ru.kazantsev.MyEighthUiRestDbService.service;
 
-import ru.kazantsev.myeighthuirestdbservice.dto.UserDto;
-import ru.kazantsev.myeighthuirestdbservice.entity.Role;
-import ru.kazantsev.myeighthuirestdbservice.entity.User;
-import ru.kazantsev.myeighthuirestdbservice.repository.RoleRepository;
-import ru.kazantsev.myeighthuirestdbservice.repository.UserRepository;
+import ru.kazantsev.MyEighthUiRestDbService.dto.UserDto;
+import ru.kazantsev.MyEighthUiRestDbService.entity.Role;
+import ru.kazantsev.MyEighthUiRestDbService.entity.User;
+import ru.kazantsev.MyEighthUiRestDbService.repository.RoleRepository;
+import ru.kazantsev.MyEighthUiRestDbService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

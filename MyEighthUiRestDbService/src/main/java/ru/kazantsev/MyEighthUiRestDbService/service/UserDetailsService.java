@@ -1,4 +1,4 @@
-package ru.kazantsev.myeighthuirestdbservice.service;
+package ru.kazantsev.MyEighthUiRestDbService.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

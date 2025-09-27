@@ -1,7 +1,7 @@
-package ru.kazantsev.myeighthuirestdbservice.service;
+package ru.kazantsev.MyEighthUiRestDbService.service;
 
-import ru.kazantsev.myeighthuirestdbservice.entity.User;
-import ru.kazantsev.myeighthuirestdbservice.repository.UserRepository;
+import ru.kazantsev.MyEighthUiRestDbService.entity.User;
+import ru.kazantsev.MyEighthUiRestDbService.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

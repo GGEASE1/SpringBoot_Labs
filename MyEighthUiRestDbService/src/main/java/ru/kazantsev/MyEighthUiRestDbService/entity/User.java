@@ -1,4 +1,4 @@
-package ru.kazantsev.myeighthuirestdbservice.entity;
+package ru.kazantsev.MyEighthUiRestDbService.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

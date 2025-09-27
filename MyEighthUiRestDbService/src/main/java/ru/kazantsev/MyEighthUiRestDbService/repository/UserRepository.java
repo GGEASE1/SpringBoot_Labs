@@ -1,6 +1,6 @@
-package ru.kazantsev.myeighthuirestdbservice.repository;
+package ru.kazantsev.MyEighthUiRestDbService.repository;
 
-import ru.kazantsev.myeighthuirestdbservice.entity.User;
+import ru.kazantsev.MyEighthUiRestDbService.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer>

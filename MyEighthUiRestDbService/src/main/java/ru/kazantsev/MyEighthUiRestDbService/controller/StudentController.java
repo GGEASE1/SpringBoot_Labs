@@ -1,7 +1,7 @@
-package ru.kazantsev.myeighthuirestdbservice.controller;
+package ru.kazantsev.MyEighthUiRestDbService.controller;
 
-import ru.kazantsev.myeighthuirestdbservice.entity.Student;
-import ru.kazantsev.myeighthuirestdbservice.repository.StudentRepository;
+import ru.kazantsev.MyEighthUiRestDbService.entity.Student;
+import ru.kazantsev.MyEighthUiRestDbService.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
